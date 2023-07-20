@@ -64,7 +64,7 @@ app.use('/api/recettes', recetteRouter);
 app.use('/api/unites', uniteRouter);
 app.use('/api/evaluations', evaluationRouter);
 
-app.get('/login',
+app.get('/api/login',
   passport.authenticate('basic', { session: false }),
   (req, res, next) => {
     if (req.user) {
@@ -82,7 +82,7 @@ app.get('/login',
   }
 );
 
-app.post('/inscription', (req, res, next) => {
+app.post('/api/inscription', (req, res, next) => {
   const userId = req.body.userId;
   if(!userId || userId === ''){
     return next(new HttpError(400, 'Le champ userId est requis'));
