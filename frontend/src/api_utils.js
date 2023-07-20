@@ -2,5 +2,5 @@
 
 export function addApiPrefixToPath(path) {
     const cacheKey = + new Date();
-    return "/api" + path + "?v=" + cacheKey;
+    return path + "?v=" + cacheKey;
 }
