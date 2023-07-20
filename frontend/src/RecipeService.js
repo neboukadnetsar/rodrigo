@@ -1,7 +1,7 @@
 import session from './session';
 
 export async function fetchRecipes(){
-    const response = await fetch('/api/recettes');
+    const response = await fetch('/recettes');
     if(response.ok){
         const respJson = await response.json();
         return respJson;
@@ -11,7 +11,7 @@ export async function fetchRecipes(){
 }
 
 export async function fetchRecipe(id){
-    const response = await fetch(`/api/recettes/${id}`);
+    const response = await fetch(`/recettes/${id}`);
     if(response.ok){
         const respJson = await response.json();
         return respJson[0];
@@ -21,7 +21,7 @@ export async function fetchRecipe(id){
 }
 
 export async function fetchRatingByIds(recipeId){
-    const response = await fetch(`/api/evaluations/${recipeId}`, {
+    const response = await fetch(`/evaluations/${recipeId}`, {
         method: "GET",
         headers: {
             ...session.getAuthHeaders()
@@ -36,7 +36,7 @@ export async function fetchRatingByIds(recipeId){
 }
 
 export async function fetchAverageRatingByRecetteId(recipeId){
-    const response = await fetch(`/api/recettes/evaluations/${recipeId}`);
+    const response = await fetch(`/recettes/evaluations/${recipeId}`);
     if(response.ok){
         const respJson = await response.json();
         return respJson;
@@ -46,7 +46,7 @@ export async function fetchAverageRatingByRecetteId(recipeId){
 }
 
 export async function putRating(rating){
-    await fetch(`/api/evaluations/${rating.recetteId}`, {
+    await fetch(`/evaluations/${rating.recetteId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export async function putRating(rating){
 }
 
 export async function fetchCommentsById(recetteId){
-    const response = await fetch(`/api/recettes/commentaires/${recetteId}`);
+    const response = await fetch(`/recettes/commentaires/${recetteId}`);
     if(response.ok){
         const respJson = await response.json();
         return respJson;
@@ -69,7 +69,7 @@ export async function fetchCommentsById(recetteId){
 }
 
 export async function submitComment(recetteId, comment){
-    await fetch(`/api/recettes/commentaires/${recetteId}`, {
+    await fetch(`/recettes/commentaires/${recetteId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -82,7 +82,7 @@ export async function submitComment(recetteId, comment){
 }
 
 export async function fetchIngrediantUnits(){
-    const response = await fetch('/api/unites')
+    const response = await fetch('/unites')
     if(response.ok){
         const respJson = await response.json();
         return respJson;
@@ -92,7 +92,7 @@ export async function fetchIngrediantUnits(){
 }
 
 export async function postRecipe(recipe){
-    return fetch("/api/recettes", {
+    return fetch("/recettes", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export async function postRecipe(recipe){
 }
 
 export async function putRecipe(recipe){
-    return fetch(`/api/recettes/${recipe.recetteId}`, {
+    return fetch(`/recettes/${recipe.recetteId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ export async function putRecipe(recipe){
 }
 
 export async function deleteRecipe(id){
-    return fetch(`/api/recettes/${id}`, {
+    return fetch(`/recettes/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -124,7 +124,7 @@ export async function deleteRecipe(id){
 }
 
 export async function putImage(id, formData){
-    return fetch(`/api/recettes/${id}/image`, {
+    return fetch(`/recettes/${id}/image`, {
         method: "PUT",
         headers: {
             ...session.getAuthHeaders()
