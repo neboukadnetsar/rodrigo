@@ -60,9 +60,9 @@ passport.use(new BasicStrategyModified((username, password, cb) => {
   });
 }));
 
-app.use('/recettes', recetteRouter);
-app.use('/unites', uniteRouter);
-app.use('/evaluations', evaluationRouter);
+app.use('api/recettes', recetteRouter);
+app.use('api/unites', uniteRouter);
+app.use('api/evaluations', evaluationRouter);
 
 app.get('/login',
   passport.authenticate('basic', { session: false }),
